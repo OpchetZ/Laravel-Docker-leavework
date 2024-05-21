@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "status_name",
+            "type": "string"
+        },
+        {
+            "name":"sick_max",
+            "type":"integer"
+        },
+        {
+            "name":"bus_max",
+            "type":"integer"
+        },
+        {
+            "name":"vaca_max",
+            "type":"integer"
+        }
+    ]
+}

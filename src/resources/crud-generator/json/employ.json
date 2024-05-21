@@ -1,0 +1,24 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name":"phone",
+            "type":"string"
+        },
+        {
+            "name":"Acc_vaca_day",
+            "type":"integer"
+        },
+        {
+            "name":"status_id",
+            "type":"integer"
+        },
+        {
+            "name":"post_id",
+            "type":"integer"
+        }
+    ]
+}

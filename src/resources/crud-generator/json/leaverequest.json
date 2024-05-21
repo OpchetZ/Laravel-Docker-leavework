@@ -1,0 +1,17 @@
+{
+    "fields": [
+        { "name": "employ_id", "type": "integer" },
+        {
+            "name": "leave_type_name",
+            "type": "select",
+            "options": {
+                "ลาพักผ่อน": "ลาพักผ่อน",
+                "ลากิจ": "ลากิจ",
+                "ลาป่วย": "ลาป่วย"
+            }
+        },
+        { "name": "start_date", "type": "date" },
+        { "name": "end_date", "type": "date" },
+        { "name": "total_leave", "type": "number" }
+    ]
+}

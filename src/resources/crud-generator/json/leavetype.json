@@ -1,0 +1,14 @@
+{
+    "fields": [
+        {
+            "name": "leave_type_name",
+            "type": "select",
+            "options": {
+                "vacation": "ลาพักผ่อน",
+                "personal": "ลากิจ",
+                "sick": "ลาป่วย"
+            }
+        }
+        
+    ]
+}

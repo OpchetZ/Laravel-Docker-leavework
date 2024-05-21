@@ -1,0 +1,8 @@
+{
+    "fields": [
+        {
+            "name": "Job position",
+            "type": "string"
+        }
+    ]
+}
