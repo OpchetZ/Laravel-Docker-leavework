@@ -22,7 +22,9 @@ class leaverequestController extends Controller
      */
     public function index(Request $request)
     {
-        $leaverequest = leaverequest::latest();
+        $perPage = 25;
+        
+        $leaverequest = leaverequest::latest()->paginate($perPage);
         return view('leaverequest.index', compact('leaverequest'));
     }
     public function index2(Request $request)

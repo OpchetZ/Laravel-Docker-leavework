@@ -20,24 +20,21 @@
                     </div> 
                     
                     <div class="row mt-3">
-                        <div class="col-lg-5">
+                        <div class="col-sm-2">
                            
                             <a href="{{ url('/leaverequest') }}" class="btn btn-primary btn-lg"
                                 title="last leaverequest" style="font-size: 50px">
-                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i> ใบลาล่าสุด
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i> ใบลา
                             </a>
 
                         </div>
+                        <div class="col-lg-5"><a href="{{ url('/history') }}" class="btn btn-warning btn-lg"
+                            title="history" style="font-size: 50px">
+                            <i class="fa fa-archive" aria-hidden="true"></i> ประวัติการลา
+                        </a></div>
                        
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-lg-5">
-                           
-                            <a href="{{ url('/history') }}" class="btn btn-warning btn-lg"
-                                title="history" style="font-size: 50px">
-                                <i class="fa fa-archive" aria-hidden="true"></i> ประวัติการลา
-                            </a>
-                        </div>
+                    
                     </div>
                 </div>
             </div>
