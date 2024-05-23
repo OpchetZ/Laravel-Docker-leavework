@@ -185,13 +185,13 @@
                             {{ $leaverequest->employ->position->Job_position }}</span>
                     </div>
                     <span>สังกัด...........โรงพยาบาลอ่างทอง.....................กลุ่มงาน............{{ $leaverequest->employ->agency->agency_name }}..........</span>
-                    <div style="text-align: center;">ขอ {{ $leaverequest->leavetype->leave_type_name }}            เนื่องจาก {{ $leaverequest->reason }}</div>
-                    <span>ตั้งแต่{{ $leaverequest->start_date->thaidate('วันที่ j M y') }} ถึงวันที่
-                        {{ $leaverequest->end_date->thaidate('j M y') }}
-                        มีกำหนด {{ $leaverequest->total_leave }} วัน</span> <br>
-                    <p>ข้าพเจ้าได้ {{ $leaverequest->leavetype->leave_type_name }}
-                        ครั้งสุดท้ายตั้งแต่{{ $lastdate ? $lastdate->start_date->thaidate('วันที่ j M y') : '......................' }}         ถึงวันที่
-                        {{ $lastdate ? $lastdate->end_date->thaidate('j M y') : '.....................' }}</p>
+                    <div style="text-align: center;"><span class="tab">ขอ {{ $leaverequest->leavetype->leave_type_name }}</span><span>เนื่องจาก {{ $leaverequest->reason }}</span></div>
+                    <span class="tab">ตั้งแต่{{ $leaverequest->start_date->thaidate('วันที่ j M y') }}</span>ถึงวันที่
+                        <span>{{ $leaverequest->end_date->thaidate('j M y') }}</span>
+                        <span>มีกำหนด {{ $leaverequest->total_leave }} วัน</span> <br>
+                    <span>ข้าพเจ้าได้ {{ $leaverequest->leavetype->leave_type_name }}
+                        ครั้งสุดท้ายตั้งแต่{{ $lastdate ? $lastdate->start_date->thaidate('วันที่ j M y') : '......................' }}ถึงวันที่
+                        {{ $lastdate ? $lastdate->end_date->thaidate('j M y') : '.....................' }}</span>
                     <span>รวม{{ $lastdate->total_leave ?? '...' }}วัน
                         ในระหว่างการลาติดต่อข้าพเจ้าได้ที่...............................................................................</span>
                     <br>
