@@ -19,6 +19,13 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <style>
+            #tab {
+                margin-left: 5em;
+            }
+
+
+        </style>
         @livewireStyles
     </head>
     <body class="font-sans antialiased">

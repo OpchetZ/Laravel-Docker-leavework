@@ -14,9 +14,18 @@
                             @php
                                 $filteredLeaveRequests = $leaverequest->whereIn('employ_id', $list);
                                 $filteredem = $employs->whereIn('agent_id', $agenlist);
-                                $totalvaca = $leaverequest->whereIn('employ_id',$list)->whereIn('leave_type_id','1')->sum('total_leave');
-                                $totalbus = $leaverequest->whereIn('employ_id',$list)->whereIn('leave_type_id','2')->sum('total_leave');
-                                $totalsick = $leaverequest->whereIn('employ_id',$list)->whereIn('leave_type_id','4')->sum('total_leave');
+                                $totalvaca = $leaverequest
+                                    ->whereIn('employ_id', $list)
+                                    ->whereIn('leave_type_id', '1')
+                                    ->sum('total_leave');
+                                $totalbus = $leaverequest
+                                    ->whereIn('employ_id', $list)
+                                    ->whereIn('leave_type_id', '2')
+                                    ->sum('total_leave');
+                                $totalsick = $leaverequest
+                                    ->whereIn('employ_id', $list)
+                                    ->whereIn('leave_type_id', '4')
+                                    ->sum('total_leave');
                             @endphp
                             <div class="col-lg-3">
                                 <form action="{{ url('/history') }}" method="GET">
@@ -48,11 +57,13 @@
 
                     <br />
                     <br />
+                    
                     <div class="table-responsive">
                         <table class="table">
+
                             <thead>
                                 <tr>
-                                   
+
                                     <th>ชื่อพนักงาน</th>
                                     <th>ประเภทการลา</th>
                                     <th>วันเริ่ม</th>
@@ -63,10 +74,14 @@
                             </thead>
                             <tbody>
                                 @if ($list != null)
-                                
+                                <div>
+                                    <span id="tab"><b>ลาพักผ่อน {{ $totalvaca }} </b></span>
+                                    <span id="tab"><b>ลากิจ {{ $totalbus }}</b></span>
+                                    <span id="tab"><b>ลาป่วย {{ $totalsick }}</b></span>
+                                </div>
                                     @foreach ($filteredLeaveRequests as $leaveRequest)
                                         <tr>
-                                            
+
                                             <td>{{ $leaveRequest->employ->name }}</td>
                                             <td>{{ $leaveRequest->leavetype->leave_type_name }}</td>
                                             <td>{{ $leaveRequest->start_date->thaidate('วันที่ j M พ.ศ. y') }}</td>
@@ -94,9 +109,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    <td><b>ลาพักผ่อน {{ $totalvaca }} </b></td>
-                                    <td><b>ลากิจ {{ $totalbus }}</b></td>
-                                    <td><b>ลาป่วย {{ $totalsick }}</b></td>
                                 @else
                                 @endif
                             </tbody>

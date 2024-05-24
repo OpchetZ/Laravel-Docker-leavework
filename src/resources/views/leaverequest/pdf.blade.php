@@ -53,9 +53,8 @@
                     }
                 @endphp
                 <div class="container">
-                    <div class="">
-                        <span id="nam">ข้าพเจ้า {{ $leaverequest->employ->name }} </span><span id="posi"> ตำแหน่ง
-                            {{ $leaverequest->employ->position->Job_position }}</span>
+                    <div class="text-right">
+                        <span id="">ข้าพเจ้า {{ $leaverequest->employ->name }} </span><span id="tab2"> ตำแหน่ง{{ $leaverequest->employ->position->Job_position }}</span>
                     </div>
                     <span>สังกัด...........โรงพยาบาลอ่างทอง...........................กลุ่มงาน.............{{ $leaverequest->employ->agency->agency_name }}.........</span>
                     <span>มีวันลาพักผ่อนสะสม {{ $accday }} วันทำการมีสิทธิลาพักผ่อนประจำปีนี้อีก
@@ -180,22 +179,20 @@
                         ->first();
                 @endphp
                 <div class="container">
-                    <div class="">
-                        <span id="nam">ข้าพเจ้า {{ $leaverequest->employ->name }} </span><span id="posi"> ตำแหน่ง
+                    <div class="text-right">
+                        <span id="">ข้าพเจ้า {{ $leaverequest->employ->name }} </span><span id="tab2"> ตำแหน่ง
                             {{ $leaverequest->employ->position->Job_position }}</span>
                     </div>
                     <span>สังกัด...........โรงพยาบาลอ่างทอง.....................กลุ่มงาน............{{ $leaverequest->employ->agency->agency_name }}..........</span>
-                    <div style="text-align: center;"><span class="tab">ขอ {{ $leaverequest->leavetype->leave_type_name }}</span><span>เนื่องจาก {{ $leaverequest->reason }}</span></div>
-                    <span class="tab">ตั้งแต่{{ $leaverequest->start_date->thaidate('วันที่ j M y') }}</span>ถึงวันที่
-                        <span>{{ $leaverequest->end_date->thaidate('j M y') }}</span>
+                    <div style="text-align: left;"><span class="tab2">ขอ {{ $leaverequest->leavetype->leave_type_name }}</span><span>เนื่องจาก {{ $leaverequest->reason }}</span></div>
+                    <span id="tab">ตั้งแต่{{ $leaverequest->start_date->thaidate('วันที่ j M y') }}</span>ถึงวันที่
+                        <span id="tab">{{ $leaverequest->end_date->thaidate('j M y') }}</span>
                         <span>มีกำหนด {{ $leaverequest->total_leave }} วัน</span> <br>
                     <span>ข้าพเจ้าได้ {{ $leaverequest->leavetype->leave_type_name }}
-                        ครั้งสุดท้ายตั้งแต่{{ $lastdate ? $lastdate->start_date->thaidate('วันที่ j M y') : '......................' }}ถึงวันที่
-                        {{ $lastdate ? $lastdate->end_date->thaidate('j M y') : '.....................' }}</span>
-                    <span>รวม{{ $lastdate->total_leave ?? '...' }}วัน
+                        ครั้งสุดท้ายตั้งแต่ {{ $lastdate ? $lastdate->start_date->thaidate('วันที่ j M y') : '......................' }} ถึงวันที่{{ $lastdate ? $lastdate->end_date->thaidate(' j M y ') : '.....................' }}</span><span>รวม {{ $lastdate->total_leave ?? '...' }} วัน
                         ในระหว่างการลาติดต่อข้าพเจ้าได้ที่...............................................................................</span>
                     <br>
-                    <span>..........................................................หมายเลขโทรศัพท์.............{{ $leaverequest->employ->phone }}............................</span>
+                    <span>..........................................................หมายเลขโทรศัพท์.............{{ $leaverequest->employ->phone }}..............</span>
                 </div>
                 
                 <div class="row">

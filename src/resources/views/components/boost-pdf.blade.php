@@ -71,7 +71,7 @@
             border: 1px solid;
             
         } */
-        #posi {
+        /* #posi {
             position: absolute;
             right: 75px;
         }
@@ -79,11 +79,21 @@
         #nam {
             position: relative;
             right: -45px;
+        } */
+        #tab2{
+            margin-left: 5em;
+            margin-right: 3em;
         }
-
+        .tab2 {
+            margin-left: 3em;
+            margin-right: 5em;
+        }
         .tab {
-            
+            margin-left: 7em;
             margin-right: 4em;
+        }
+        #tab{
+            margin-right: 1em;
         }
     </style>
 </head>
