@@ -80,8 +80,11 @@
             position: relative;
             right: -45px;
         } */
-        #tab2{
-            margin-left: 5em;
+        #ttab {
+            margin-left: 2em;
+        }
+        #tab2 {
+            margin-left: 2em;
             margin-right: 3em;
         }
         .tab2 {
