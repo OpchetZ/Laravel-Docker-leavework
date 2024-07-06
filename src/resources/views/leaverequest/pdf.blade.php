@@ -53,8 +53,8 @@
                     }
                 @endphp
                 <div class="container">
-                    <div class="text-right">
-                        <span id="">ข้าพเจ้า {{ $leaverequest->employ->name }} </span><span id="tab2"> ตำแหน่ง{{ $leaverequest->employ->position->Job_position }}</span>
+                    <div class="">
+                        <div class="dis1">ข้าพเจ้า </div><div class="dis">{{ $leaverequest->employ->name }}</div><div class="dis2"> ตำแหน่ง </div><div class="dis3">{{ $leaverequest->employ->position->Job_position }}</div>
                     </div>
                     <span>สังกัด...........โรงพยาบาลอ่างทอง...........................กลุ่มงาน.............{{ $leaverequest->employ->agency->agency_name }}.........</span>
                     <span>มีวันลาพักผ่อนสะสม {{ $accday }} วันทำการมีสิทธิลาพักผ่อนประจำปีนี้อีก
@@ -179,9 +179,8 @@
                         ->first();
                 @endphp
                 <div class="container">
-                    <div class="text-right">
-                        <span id="">ข้าพเจ้า {{ $leaverequest->employ->name }} </span><span id="tab2"> ตำแหน่ง
-                            {{ $leaverequest->employ->position->Job_position }}</span>
+                    <div class="">
+                        <div class="dis1">ข้าพเจ้า </div><div class="dis">{{ $leaverequest->employ->name }}</div><div class="dis2"> ตำแหน่ง </div><div class="dis3">{{ $leaverequest->employ->position->Job_position }}</div>
                     </div>
                     <span>สังกัด...........โรงพยาบาลอ่างทอง.....................กลุ่มงาน............{{ $leaverequest->employ->agency->agency_name }}..........</span>
                     <div style="text-align: left;"><span class="tab2">ขอ {{ $leaverequest->leavetype->leave_type_name }}</span><span>เนื่องจาก {{ $leaverequest->reason }}</span></div>

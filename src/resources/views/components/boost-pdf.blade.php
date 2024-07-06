@@ -57,6 +57,24 @@
         td,th{
             border: 1px solid;
         } */
+         .dis {
+            display: inline;
+            
+         }
+         .dis1 {
+            display: inline;
+            margin-left: 4em;
+         }
+         .dis2 {
+            display: inline;
+            position: absolute;
+            left: 400px;
+         }
+         .dis3 {
+            display: inline;
+            position: absolute;
+            left: 470px;
+         }
         .b {
             border: 1px solid;
             width: 60px;
