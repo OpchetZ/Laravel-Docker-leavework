@@ -23,7 +23,7 @@
                         <div class="col-sm-2">
                            
                             <a href="{{ url('/leaverequest') }}" class="btn btn-primary btn-lg"
-                                title="last leaverequest" style="font-size: 50px">
+                                title="last leaverequest" style="font-size: 50px; margin-bottom:20px">
                                 <i class="fa fa-file-pdf-o" aria-hidden="true"></i> ใบลา
                             </a>
 
