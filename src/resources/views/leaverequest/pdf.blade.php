@@ -10,7 +10,7 @@
                     <br>
                     <div class="col-xs-6 text-right">
                         <div>เขียนที่ โรงพยาบาลอ่างทอง</div>
-                        <div>{{ $leaverequest->start_date->thaidate('วันที่ j เดือน F พ.ศ. y') }}</div>
+                        <div>{{ $leaverequest->created_at->thaidate('วันที่ j เดือน F พ.ศ. y') }}</div>
                     </div>
                 </div>
                 <div class="row">
@@ -128,7 +128,7 @@
                     <br>
                     <div class="col-xs-6 text-right">
                         <div>เขียนที่ โรงพยาบาลอ่างทอง</div>
-                        <div>{{ $leaverequest->start_date->thaidate('วันที่ j เดือน F พ.ศ. y') }}</div>
+                        <div>{{ $leaverequest->created_at->thaidate('วันที่ j เดือน F พ.ศ. y') }}</div>
                     </div>
                 </div>
                 <div class="row">
