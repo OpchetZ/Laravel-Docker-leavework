@@ -212,22 +212,23 @@
                             <div class="col-xs-3 b">ลามาแล้ว<br>(วันทำการ)</div>
                             <div class="col-xs-3 b">ลาครั้งนี้<br>(วันทำการ)</div>
                             <div class="col-xs-3 b">รวมเป็น<br>(วันทำการ)</div>
+                            <div class="col-xs-4 text-center"><span>
+                                    (นายยุทธนา เกษมสุข)<br>เจ้าพนักงานธุรการปฎิบัติงาน</span></div>
                         </div>
                         <div class="row text-center">
                             <div class="col-xs-4 b">ป่วย</div>
                             <div class="col-xs-4 b">{{ $leavesick ?? null }}<br></div>
                             <div class="col-xs-4 b">{{ $sickleave ?? null }}<br></div>
                             <div class="col-xs-4 b">{{ $sickallleave ?? null }}<br></div>
-                            <div class="col-xs-6 text-center"><span>
-                                    (นายยุทธนา เกษมสุข)</span></div>
+                            
+                            
                         </div>
                         <div class="row text-center">
                             <div class="col-xs-4 b">กิจส่วนตัว</div>
                             <div class="col-xs-4 b">{{ $leavebus ?? null }}<br></div>
                             <div class="col-xs-4 b">{{ $busleave ?? null }}<br></div>
                             <div class="col-xs-4 b">{{ $allleave ?? null }}<br></div>
-                            <div class="col-xs-6 text-center"><span>
-                                    เจ้าพนักงานธุรการปฎิบัติงาน</span></div>
+                            
 
                         </div>
                     </div>
