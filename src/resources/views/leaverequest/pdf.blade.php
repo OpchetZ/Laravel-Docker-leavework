@@ -59,11 +59,9 @@
                     <span>สังกัด...........โรงพยาบาลอ่างทอง...........................กลุ่มงาน.............{{ $leaverequest->employ->agency->agency_name }}.........</span>
                     <span>มีวันลาพักผ่อนสะสม {{ $accday }} วันทำการมีสิทธิลาพักผ่อนประจำปีนี้อีก
                         {{ $accleave }} วันทำการ รวมเป็น {{ $vacatotal }} วัน<br></span>
-                    <span>ขอลาพักผ่อนตั้งแต่ {{ $leaverequest->start_date->thaidate('วันที่ j เดือน M พ.ศ. y') }}
-                        ถึงวันที่{{ $leaverequest->end_date->thaidate('j เดือน Mพ.ศ. y') }}
-                    </span>
-                    <span>มีกำหนด{{ $leaverequest->total_leave }}วัน
-                        ในระหว่างการลาติดต่อข้าพเจ้าได้ที่.......................................................................................</span>
+                    <span>ขอลาพักผ่อนตั้งแต่วันที่{{ $leaverequest->start_date->thaidate('..j..เดือน..M..พ.ศ...y..') }}ถึงวันที่{{ $leaverequest->end_date->thaidate('..j..เดือน..M..พ.ศ..y..') }}</span>
+                    <br>
+                    <span>มีกำหนด..{{ $leaverequest->total_leave }}..วัน ในระหว่างการลาติดต่อข้าพเจ้าได้ที่............................................................</span>
                     <span>..........................................................หมายเลขโทรศัพท์.............{{ $leaverequest->employ->phone }}......................</span>
                 </div>
                 
@@ -71,9 +69,10 @@
                     <div class="col-xs-6"></div>
                     <div class="col-xs-6">
                         <span> ขอแสดงความนับถือ</span><br><br>
-                        <span>ลงชื่อ.................................</span><br>
-                        <span>({{ $leaverequest->employ->name }})</span>
+                        <div class="dis">ลงชื่อ..........<div class="dissign">{{ $leaverequest->employ->sign }}</div>...........</div><br>
+                        <div class="dissign1">({{ $leaverequest->employ->name }})</div>
                     </div>
+                    
                 </div>
                 <div class="row">
                     <div>
@@ -99,7 +98,7 @@
                     <div class="col-xs-6">
                         <span> ความเห็นผู้บังคับบัญชา</span><br>
                         <span>.........................................................</span> <br>
-                        <span>ลงชื่อ (นางพลับพลึง จำพรด) </span><br>
+                        <div class="dis">ลงชื่อ <div class="dissign1">(นางพลับพลึง จำพรด)</div> </div><br>
                         <span>ตำแหน่ง หัวหน้ากลุ่มงานบริหารทั่วไป </span> <br>
                         <span>วันที่.................................................</span>
                     </div>
@@ -114,7 +113,7 @@
                     <div class="col-xs-6">
                         <span> คำสั่ง ( ) อนุญาต ( ) ไม่อนุญาต</span><br>
                         <span>.........................................................</span> <br>
-                        <span>ลงชื่อ (นางวราภรณ์ วังเมธากุล) </span><br>
+                        <div class="dis">ลงชื่อ <div class="dissign2">(นางวราภรณ์ วังเมธากุล)</div> </div><br>
                         <span>ตำแหน่ง รองผู้อำนวยการฝ่ายบริหาร </span> <br>
                         <span>วันที่.................................................</span>
                     </div>
@@ -198,8 +197,8 @@
                     <div class="col-xs-6"></div>
                     <div class="col-xs-6">
                         <span> ขอแสดงความนับถือ</span><br><br>
-                        <span>ลงชื่อ.................................</span><br>
-                        <span>({{ $leaverequest->employ->name }})</span>
+                        <div class="dis">ลงชื่อ..........<div class="dissign">{{ $leaverequest->employ->sign }}</div>...........</div><br>
+                        <div class="dissign1">({{ $leaverequest->employ->name }})</div>
                     </div>
                 </div>
                 <div class="row">

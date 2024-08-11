@@ -57,13 +57,28 @@
         td,th{
             border: 1px solid;
         } */
+         /* span {
+            display: inline-block;
+         } */
          .dis {
             display: inline;
             
          }
+         .dissign {
+            display: inline;
+            font-size: 20px
+         }
          .dis1 {
             display: inline;
             margin-left: 4em;
+         }
+         .dissign1 {
+            display: inline;
+            margin-left: 2em;
+         }
+         .dissign2 {
+            display: inline;
+            margin-left: 20px;
          }
          .dis2 {
             display: inline;

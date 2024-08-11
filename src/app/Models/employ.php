@@ -29,15 +29,15 @@ class employ extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'phone', 'Acc_vaca_day', 'status_id', 'post_id', 'vaca_max','bus_max','sick_max','agent_id'];
+    protected $fillable = ['name','sign', 'phone', 'Acc_vaca_day', 'status_id', 'post_id', 'vaca_max','bus_max','sick_max','agent_id'];
 
     public function status()
     {
-        return $this->belongsTo(Status::class,'status_id');
+        return $this->belongsTo(status::class,'status_id');
     }
     public function position()
     {
-        return $this->belongsTo(Position::class,'post_id');
+        return $this->belongsTo(position::class,'post_id');
     }
     public function LeaveRequests()
     {
