@@ -24,6 +24,7 @@ class employController extends Controller
 
         if (!empty($keyword)) {
             $employ = employ::where('name', 'LIKE', "%$keyword%")
+            ->orWhere('sign', 'LIKE', "%$keyword%")
                 ->orWhere('phone', 'LIKE', "%$keyword%")
                 ->orWhere('Acc_vaca_day', 'LIKE', "%$keyword%")
                 ->orWhere('status_id', 'LIKE', "%$keyword%")

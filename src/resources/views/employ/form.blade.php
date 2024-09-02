@@ -3,6 +3,11 @@
     <input class="form-control" style="border-radius: 12px" name="name" type="text" id="name" value="{{ isset($employ->name) ? $employ->name : ''}}" >
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
+<div class="form-group {{ $errors->has('sign') ? 'has-error' : ''}}">
+    <label for="sign" class="control-label">{{ 'ลายเซ็น' }}</label>
+    <input class="form-control" style="border-radius: 12px" name="sign" type="text" id="sign" value="{{ isset($employ->sign) ? $employ->sign : ''}}" >
+    {!! $errors->first('sign', '<p class="help-block">:message</p>') !!}
+</div>
 <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
     <label for="phone" class="control-label">{{ 'โทรศัพท์' }}</label>
     <input class="form-control" style="border-radius: 12px" name="phone" type="text" id="phone" value="{{ isset($employ->phone) ? $employ->phone : ''}}" >
