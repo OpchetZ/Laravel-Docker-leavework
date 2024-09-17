@@ -99,6 +99,26 @@
             border: 1px solid;
 
         }
+        .dot {
+            position: absolute;
+            left: 450px;
+            top: 157px;
+        }
+        .dot2 {
+            position: absolute;
+            right: 303px;
+            top: 157px;
+        }
+        .dot3 {
+            position: absolute;
+            left: 450px;
+            top: 148px;
+        }
+        .dot4 {
+            position: absolute;
+            right: 303px;
+            top: 148px;
+        }
 
         /* .col-xs-6 {
             border: 1px solid;

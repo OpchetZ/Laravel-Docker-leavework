@@ -1,6 +1,6 @@
 <x-boost-pdf title="">
 
-    <body style="font-size:<?php echo $leaverequest->leavetype->leave_type_name == 'ลาพักผ่อน' ? '15px' : '15px'; ?>;">
+    <body style="font-size:<?php echo $leaverequest->leavetype->leave_type_name == 'ลาพักผ่อน' ? '15px' : '14px'; ?>;">
         <div class="container" style="margin-left: 75px;">
             @if ($leaverequest->leavetype->leave_type_name == 'ลาพักผ่อน')
                 <div class="row">
@@ -55,14 +55,16 @@
                 <div class="container">
                     <div class="">
                         <div class="dis1">ข้าพเจ้า </div><div class="dis">{{ $leaverequest->employ->name }}</div><div class="dis2"> ตำแหน่ง </div><div class="dis3">{{ $leaverequest->employ->position->Job_position }}</div>
+                        <div class="dot">.................................................</div><div class="dot2">..................................................</div>
                     </div>
-                    <span>สังกัด...........โรงพยาบาลอ่างทอง...........................กลุ่มงาน.............{{ $leaverequest->employ->agency->agency_name }}.........</span>
+                    <span>สังกัด...........โรงพยาบาลอ่างทอง...........................กลุ่มงาน.............{{ $leaverequest->employ->agency->agency_name }}.....</span>
                     <span>มีวันลาพักผ่อนสะสม {{ $accday }} วันทำการมีสิทธิลาพักผ่อนประจำปีนี้อีก
                         {{ $accleave }} วันทำการ รวมเป็น {{ $vacatotal }} วัน<br></span>
-                    <span>ขอลาพักผ่อนตั้งแต่วันที่{{ $leaverequest->start_date->thaidate('..j..เดือน..M..พ.ศ...y..') }}ถึงวันที่{{ $leaverequest->end_date->thaidate('..j..เดือน..M..พ.ศ..y..') }}</span>
+                    <span>ขอลาพักผ่อนตั้งแต่วันที่{{ $leaverequest->start_date->thaidate('..j..เดือน..M..พ.ศ...y..') }}ถึงวันที่{{ $leaverequest->end_date->thaidate('..j..เดือน..M..พ.ศ..y..') }}...........
+                    </span>
                     <br>
-                    <span>มีกำหนด..{{ $leaverequest->total_leave }}..วัน ในระหว่างการลาติดต่อข้าพเจ้าได้ที่............................................................</span>
-                    <span>..........................................................หมายเลขโทรศัพท์.............{{ $leaverequest->employ->phone }}......................</span>
+                    <span>มีกำหนด..{{ $leaverequest->total_leave }}..วัน ในระหว่างการลาติดต่อข้าพเจ้าได้ที่..........................................................</span>
+                    <span>..........................................................หมายเลขโทรศัพท์.............{{ $leaverequest->employ->phone }}....................</span>
                 </div>
                 
                 <div class="row">
@@ -181,8 +183,9 @@
                 <div class="container">
                     <div class="">
                         <div class="dis1">ข้าพเจ้า </div><div class="dis">{{ $leaverequest->employ->name }}</div><div class="dis2"> ตำแหน่ง </div><div class="dis3">{{ $leaverequest->employ->position->Job_position }}</div>
+                        <div class="dot3">........................................................</div><div class="dot4">.......................................................</div>
                     </div>
-                    <span>สังกัด...........โรงพยาบาลอ่างทอง.....................กลุ่มงาน............{{ $leaverequest->employ->agency->agency_name }}..........</span>
+                    <span>สังกัด...........โรงพยาบาลอ่างทอง.....................กลุ่มงาน............{{ $leaverequest->employ->agency->agency_name }}........................</span>
                     <div style="text-align: left;"><span class="tab2">ขอ {{ $leaverequest->leavetype->leave_type_name }}</span><span>เนื่องจาก {{ $leaverequest->reason }}</span></div>
                     <span id="tab">ตั้งแต่{{ $leaverequest->start_date->thaidate('วันที่ j M y') }}</span>ถึงวันที่
                         <span id="tab">{{ $leaverequest->end_date->thaidate('j M y') }}</span>
