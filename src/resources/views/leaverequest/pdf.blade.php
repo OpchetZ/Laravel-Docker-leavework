@@ -113,13 +113,13 @@
                         <span>ตำแหน่ง...........................................</span> <br>
                         <span>วันที่.................................................</span>
                     </div>
-                    <div class="col-xs-6">
+                    {{-- <div class="col-xs-6">
                         <span> คำสั่ง ( ) อนุญาต ( ) ไม่อนุญาต</span><br>
                         <span>.........................................................</span> <br>
                         <div class="dis">ลงชื่อ <div class="dissign2">(นางวราภรณ์ วังเมธากุล)</div> </div><br>
                         <span>ตำแหน่ง รองผู้อำนวยการฝ่ายบริหาร </span> <br>
                         <span>วันที่.................................................</span>
-                    </div>
+                    </div> --}}
                 </div>
                 <span>หมายเหตุ : ห้ามลบขีดเขียน</span>
             @else
@@ -148,7 +148,7 @@
                 @php
                     $selectedIds = [$leaverequest->employ_id];
                     $selectleave = [$leaverequest->leave_type_id];
-                    if ($leaverequest->leavetype->leave_type_name == 'ลากิจ') {
+                    if ($leaverequest->leavetype->leave_type_name == 'ลากิจส่วนตัว') {
                         $leavebus = $leaverequest
                             ->whereIn('employ_id', $selectedIds)
                             ->whereIn('leave_type_id', $selectleave)
@@ -257,13 +257,13 @@
                         <span>ตำแหน่ง...........................................</span> <br>
                         <span>วันที่.................................................</span>
                     </div>
-                    <div class="col-xs-6">
+                    {{-- <div class="col-xs-6">
                         <span> คำสั่ง ( ) อนุญาต ( ) ไม่อนุญาต</span><br>
                         <span>.........................................................</span> <br>
                         <div class="dis">ลงชื่อ <div class="dissign2">(นางวราภรณ์ วังเมธากุล)</div> </div><br>
                         <span>ตำแหน่ง รองผู้อำนวยการฝ่ายบริหาร </span> <br>
                         <span>วันที่.................................................</span>
-                    </div>
+                    </div> --}}
                 </div>
                 <span>หมายเหตุ : ห้ามลบขีดเขียน</span>
             @endif
