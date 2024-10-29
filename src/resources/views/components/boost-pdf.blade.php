@@ -151,6 +151,26 @@
         #tab{
             margin-right: 1em;
         }
+        .vacadatestart {
+            position: absolute;
+            left: 260px;
+            top: 245px;
+        }
+        .vacadateend {
+            position: absolute;
+            left: 465px;
+            top: 245px;
+        }
+        .startdate {
+            position: absolute;
+            left: 170px;
+            top: 230px;
+        }
+        .enddate {
+            position: absolute;
+            left: 300px;
+            top: 230px;
+        }
     </style>
 </head>
 

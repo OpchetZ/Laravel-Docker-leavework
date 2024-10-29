@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-                @php
+                {{-- @php
                     $selectedIds = [$leaverequest->employ_id];
                     $selectleave = [$leaverequest->leave_type_id];
                     $leavevaca = $leaverequest
@@ -51,30 +51,68 @@
                         $accleave = $leaverequest->employ->vaca_max - $leavevaca;
                         $vacatotal = $accday + $accleave;
                     }
+                @endphp --}}
+                @php
+                    $selectedIds = [$leaverequest->employ_id];
+                    $selectleave = [$leaverequest->leave_type_id];
+                    $leavevaca = $leaverequest
+                        ->whereIn('employ_id', $selectedIds)
+                        ->whereIn('leave_type_id', $selectleave)
+                        ->where('created_at', '<=', $leaverequest->created_at)
+                        ->sum('total_leave');
+                    $leavevaca = max(0, $leavevaca - $leaverequest->total_leave); 
+                    $allleave = max(0, $leavevaca + $leaverequest->total_leave); 
+                    $accleave = max(0, $leaverequest->employ->vaca_max - $leavevaca);
+                    $accday = max(0, $leaverequest->employ->Acc_vaca_day); 
+                    $vacatotal = $accday + $accleave;
+
+                    if ($accday != 0) {
+                        if ($allleave > $leaverequest->employ->vaca_max) {
+                            $odd = max(0, $allleave - $leaverequest->employ->vaca_max); 
+                            $odd = max(0, $odd - $leaverequest->total_leave); 
+                            $accday = max(0, $leaverequest->employ->Acc_vaca_day - $odd); 
+
+                            $accleave = 0;
+                            $vacatotal = $accday + $accleave;
+                        }
+                    } elseif ($accleave > 0) {
+                        $accday = 0;
+                        $accleave = max(0, $leaverequest->employ->vaca_max - $leavevaca); 
+                        $vacatotal = $accday + $accleave;
+                    }
                 @endphp
+
                 <div class="container">
                     <div class="">
-                        <div class="dis1">ข้าพเจ้า </div><div class="dis">{{ $leaverequest->employ->name }}</div><div class="dis2"> ตำแหน่ง </div><div class="dis3">{{ $leaverequest->employ->position->Job_position }}</div>
-                        <div class="dot">.................................................</div><div class="dot2">..................................................</div>
+                        <div class="dis1">ข้าพเจ้า </div>
+                        <div class="dis">{{ $leaverequest->employ->name }}</div>
+                        <div class="dis2"> ตำแหน่ง </div>
+                        <div class="dis3">{{ $leaverequest->employ->position->Job_position }}</div>
+                        <div class="dot">.................................................</div>
+                        <div class="dot2">..................................................</div>
                     </div>
                     <span>สังกัด...........โรงพยาบาลอ่างทอง...........................กลุ่มงาน.............{{ $leaverequest->employ->agency->agency_name }}.....</span>
                     <span>มีวันลาพักผ่อนสะสม {{ $accday }} วันทำการมีสิทธิลาพักผ่อนประจำปีนี้อีก
                         {{ $accleave }} วันทำการ รวมเป็น {{ $vacatotal }} วัน<br></span>
-                    <span>ขอลาพักผ่อนตั้งแต่วันที่{{ $leaverequest->start_date->thaidate('..j..เดือน..M..พ.ศ...y..') }}ถึงวันที่{{ $leaverequest->end_date->thaidate('..j..เดือน..M..พ.ศ..y..') }}...........
+                    <span>ขอลาพักผ่อนตั้งแต่วันที่..............................................ถึงวันที่..............................................
                     </span>
+                    <div class="vacadatestart">{{ $leaverequest->start_date->thaidate('j เดือน M พ.ศ.y') }}</div>
+                    <div class="vacadateend">{{ $leaverequest->end_date->thaidate('j เดือน M พ.ศ.y') }}</div>
                     <br>
-                    <span>มีกำหนด..{{ $leaverequest->total_leave }}..วัน ในระหว่างการลาติดต่อข้าพเจ้าได้ที่..........................................................</span>
+                    <span>มีกำหนด..{{ $leaverequest->total_leave }}..วัน
+                        ในระหว่างการลาติดต่อข้าพเจ้าได้ที่..........................................................</span>
                     <span>..........................................................หมายเลขโทรศัพท์.............{{ $leaverequest->employ->phone }}....................</span>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-xs-6"></div>
                     <div class="col-xs-6">
                         <span> ขอแสดงความนับถือ</span><br><br>
-                        <div class="dis">ลงชื่อ..........<div class="dissign">{{ $leaverequest->employ->sign }}</div>...........</div><br>
+                        <div class="dis">ลงชื่อ..........<div class="dissign">{{ $leaverequest->employ->sign }}
+                            </div>...........</div><br>
                         <div class="dissign1">({{ $leaverequest->employ->name }})</div>
                     </div>
-                    
+
                 </div>
                 <div class="row">
                     <div>
@@ -101,7 +139,8 @@
                         <span> ความเห็นผู้บังคับบัญชา</span><br>
                         <span>.........................................................</span> <br>
                         <span>.........................................................</span> <br>
-                        <div class="dis">ลงชื่อ <div class="dissign1">(นางพลับพลึง จำพรด)</div> </div><br>
+                        <div class="dis">ลงชื่อ <div class="dissign1">(นางพลับพลึง จำพรด)</div>
+                        </div><br>
                         <span>ตำแหน่ง หัวหน้ากลุ่มงานบริหารทั่วไป </span> <br>
                         <span>วันที่.................................................</span>
                     </div>
@@ -182,26 +221,38 @@
                 @endphp
                 <div class="container">
                     <div class="">
-                        <div class="dis1">ข้าพเจ้า </div><div class="dis">{{ $leaverequest->employ->name }}</div><div class="dis2"> ตำแหน่ง </div><div class="dis3">{{ $leaverequest->employ->position->Job_position }}</div>
-                        <div class="dot3">........................................................</div><div class="dot4">.......................................................</div>
+                        <div class="dis1">ข้าพเจ้า </div>
+                        <div class="dis">{{ $leaverequest->employ->name }}</div>
+                        <div class="dis2"> ตำแหน่ง </div>
+                        <div class="dis3">{{ $leaverequest->employ->position->Job_position }}</div>
+                        <div class="dot3">........................................................</div>
+                        <div class="dot4">.......................................................</div>
                     </div>
                     <span>สังกัด...........โรงพยาบาลอ่างทอง.....................กลุ่มงาน............{{ $leaverequest->employ->agency->agency_name }}........................</span>
-                    <div style="text-align: left;"><span class="tab2">ขอ {{ $leaverequest->leavetype->leave_type_name }}</span><span>เนื่องจาก {{ $leaverequest->reason }}</span></div>
-                    <span id="tab">ตั้งแต่{{ $leaverequest->start_date->thaidate('วันที่ j M y') }}</span>ถึงวันที่
-                        <span id="tab">{{ $leaverequest->end_date->thaidate('j M y') }}</span>
-                        <span>มีกำหนด {{ $leaverequest->total_leave }} วัน</span> <br>
+                    <div style="text-align: left;"><span class="tab2">ขอ
+                            {{ $leaverequest->leavetype->leave_type_name }}</span><span>เนื่องจาก
+                            {{ $leaverequest->reason }}</span></div>
+                    <span
+                        id="">ตั้งแต่วันที่..........................ถึงวันที่..........................มีกำหนด {{ $leaverequest->total_leave }} วัน</span>
+                        <div class="startdate">{{ $leaverequest->start_date->thaidate('j M y') }}</div>
+                    <div class="enddate">{{ $leaverequest->end_date->thaidate('j M y') }}</div>
+                     <br>
                     <span>ข้าพเจ้าได้ {{ $leaverequest->leavetype->leave_type_name }}
-                        ครั้งสุดท้ายตั้งแต่ {{ $lastdate ? $lastdate->start_date->thaidate('วันที่ j M y') : '......................' }} ถึงวันที่{{ $lastdate ? $lastdate->end_date->thaidate(' j M y ') : '.....................' }}</span><span>รวม {{ $lastdate->total_leave ?? '...' }} วัน
+                        ครั้งสุดท้ายตั้งแต่
+                        {{ $lastdate ? $lastdate->start_date->thaidate('วันที่ j M y') : '......................' }}
+                        ถึงวันที่{{ $lastdate ? $lastdate->end_date->thaidate(' j M y ') : '.....................' }}</span><span>รวม
+                        {{ $lastdate->total_leave ?? '...' }} วัน
                         ในระหว่างการลาติดต่อข้าพเจ้าได้ที่...............................................................................</span>
                     <br>
                     <span>..........................................................หมายเลขโทรศัพท์.............{{ $leaverequest->employ->phone }}..............</span>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-xs-6"></div>
                     <div class="col-xs-6">
                         <span> ขอแสดงความนับถือ</span><br><br>
-                        <div class="dis">ลงชื่อ..........<div class="dissign">{{ $leaverequest->employ->sign }}</div>...........</div><br>
+                        <div class="dis">ลงชื่อ..........<div class="dissign">{{ $leaverequest->employ->sign }}
+                            </div>...........</div><br>
                         <div class="dissign1">({{ $leaverequest->employ->name }})</div>
                     </div>
                 </div>
@@ -223,15 +274,15 @@
                             <div class="col-xs-4 b">{{ $leavesick ?? null }}<br></div>
                             <div class="col-xs-4 b">{{ $sickleave ?? null }}<br></div>
                             <div class="col-xs-4 b">{{ $sickallleave ?? null }}<br></div>
-                            
-                            
+
+
                         </div>
                         <div class="row text-center">
                             <div class="col-xs-4 b">กิจส่วนตัว</div>
                             <div class="col-xs-4 b">{{ $leavebus ?? null }}<br></div>
                             <div class="col-xs-4 b">{{ $busleave ?? null }}<br></div>
                             <div class="col-xs-4 b">{{ $allleave ?? null }}<br></div>
-                            
+
 
                         </div>
                     </div>
@@ -245,7 +296,8 @@
                         <span> ความเห็นผู้บังคับบัญชา</span><br>
                         <span>.........................................................</span> <br>
                         <span>.........................................................</span> <br>
-                        <div class="dis">ลงชื่อ <div class="dissign1">(นางพลับพลึง จำพรด)</div> </div><br>
+                        <div class="dis">ลงชื่อ <div class="dissign1">(นางพลับพลึง จำพรด)</div>
+                        </div><br>
                         <span>ตำแหน่ง หัวหน้ากลุ่มงานบริหารทั่วไป </span> <br>
                         <span>วันที่.................................................</span>
                     </div>
