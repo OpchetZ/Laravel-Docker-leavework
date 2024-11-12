@@ -66,6 +66,15 @@
          }
          .dissign {
             display: inline;
+            position: absolute;
+            top:50px;
+            left: 70px;
+            font-size: 20px
+         }.dissignn {
+            display: inline;
+            position: absolute;
+            top:45px;
+            left: 50px;
             font-size: 20px
          }
          .dis1 {
@@ -74,7 +83,7 @@
          }
          .dissign1 {
             display: inline;
-            margin-left: 2em;
+            
          }
          .dissign2 {
             display: inline;
@@ -118,6 +127,16 @@
             position: absolute;
             right: 303px;
             top: 148px;
+        }
+        .posi {
+            display: inline;
+            position: absolute;
+            left: -15px;
+        }
+        .dondelete1 {
+            display: inline;
+            position: absolute;
+            left: 90px;
         }
 
         /* .col-xs-6 {

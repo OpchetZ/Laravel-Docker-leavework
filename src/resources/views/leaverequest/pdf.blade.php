@@ -108,8 +108,8 @@
                     <div class="col-xs-6"></div>
                     <div class="col-xs-6">
                         <span> ขอแสดงความนับถือ</span><br><br>
-                        <div class="dis">ลงชื่อ..........<div class="dissign">{{ $leaverequest->employ->sign }}
-                            </div>...........</div><br>
+                        <div class="dis">ลงชื่อ................................<div class="dissign">{{ $leaverequest->employ->sign }}
+                            </div></div><br>
                         <div class="dissign1">({{ $leaverequest->employ->name }})</div>
                     </div>
 
@@ -123,8 +123,8 @@
                             <div class="col-xs-4 b">ลามาแล้ว<br>(วันทำการ)</div>
                             <div class="col-xs-4 b">ลาครั้งนี้<br>(วันทำการ)</div>
                             <div class="col-xs-4 b">รวมเป็น<br>(วันทำการ)</div>
-                            <div class="col-xs-6 text-center"><span>
-                                    (นายยุทธนา เกษมสุข)<br>เจ้าพนักงานธุรการปฎิบัติงาน</span></div>
+                            {{-- <div class="col-xs-6 text-center"><span>
+                                    (นายยุทธนา เกษมสุข)<br>เจ้าพนักงานธุรการปฎิบัติงาน</span></div> --}}
                         </div>
                         <div class="row text-center">
                             <div class="col-xs-4 b"> {{ $leavevaca }} <br></div>
@@ -139,9 +139,9 @@
                         <span> ความเห็นผู้บังคับบัญชา</span><br>
                         <span>.........................................................</span> <br>
                         <span>.........................................................</span> <br>
-                        <div class="dis">ลงชื่อ <div class="dissign1">(นางพลับพลึง จำพรด)</div>
+                        <div class="dis">ลงชื่อ <div class="dissign1">(นายยุทธนา เกษมสุข)</div>
                         </div><br>
-                        <span>ตำแหน่ง หัวหน้ากลุ่มงานบริหารทั่วไป </span> <br>
+                        <span>ตำแหน่ง เจ้าพนักงานธุรการปฎิบัติงาน </span> <br>
                         <span>วันที่.................................................</span>
                     </div>
                 </div>
@@ -152,15 +152,15 @@
                         <span>ตำแหน่ง...........................................</span> <br>
                         <span>วันที่.................................................</span>
                     </div>
-                    {{-- <div class="col-xs-6">
+                    <div class="col-xs-6">
                         <span> คำสั่ง ( ) อนุญาต ( ) ไม่อนุญาต</span><br>
                         <span>.........................................................</span> <br>
-                        <div class="dis">ลงชื่อ <div class="dissign2">(นางวราภรณ์ วังเมธากุล)</div> </div><br>
-                        <span>ตำแหน่ง รองผู้อำนวยการฝ่ายบริหาร </span> <br>
+                        <div class="dis">ลงชื่อ <div class="dissign2">(นางพลับพลึง จำพรด)</div> </div><br>
+                        <span>ตำแหน่ง รองผู้อำนวยการฝ่ายบริหาร</span><br><div class="posi">ปฏิบัติราชการแทนผู้อำนวยการโรงพยาบาลอ่างทอง</div> <br>
                         <span>วันที่.................................................</span>
-                    </div> --}}
+                    </div>
                 </div>
-                <span>หมายเหตุ : ห้ามลบขีดเขียน</span>
+                <div class="dondelete1">หมายเหตุ : ห้ามลบขีดเขียน</div>
             @else
                 <div class="row">
                     <div class="col-xs-5">
@@ -251,8 +251,8 @@
                     <div class="col-xs-6"></div>
                     <div class="col-xs-6">
                         <span> ขอแสดงความนับถือ</span><br><br>
-                        <div class="dis">ลงชื่อ..........<div class="dissign">{{ $leaverequest->employ->sign }}
-                            </div>...........</div><br>
+                        <div class="dis">ลงชื่อ................................<div class="dissignn">{{ $leaverequest->employ->sign }}
+                        </div></div><br>
                         <div class="dissign1">({{ $leaverequest->employ->name }})</div>
                     </div>
                 </div>
@@ -266,8 +266,8 @@
                             <div class="col-xs-3 b">ลามาแล้ว<br>(วันทำการ)</div>
                             <div class="col-xs-3 b">ลาครั้งนี้<br>(วันทำการ)</div>
                             <div class="col-xs-3 b">รวมเป็น<br>(วันทำการ)</div>
-                            <div class="col-xs-4 text-center"><span>
-                                    (นายยุทธนา เกษมสุข)<br>เจ้าพนักงานธุรการปฎิบัติงาน</span></div>
+                            {{-- <div class="col-xs-4 text-center"><span>
+                                    (นายยุทธนา เกษมสุข)<br>เจ้าพนักงานธุรการปฎิบัติงาน</span></div> --}}
                         </div>
                         <div class="row text-center">
                             <div class="col-xs-4 b">ป่วย</div>
@@ -296,9 +296,9 @@
                         <span> ความเห็นผู้บังคับบัญชา</span><br>
                         <span>.........................................................</span> <br>
                         <span>.........................................................</span> <br>
-                        <div class="dis">ลงชื่อ <div class="dissign1">(นางพลับพลึง จำพรด)</div>
+                        <div class="dis">ลงชื่อ <div class="dissign1">(นายยุทธนา เกษมสุข)</div>
                         </div><br>
-                        <span>ตำแหน่ง หัวหน้ากลุ่มงานบริหารทั่วไป </span> <br>
+                        <span>ตำแหน่ง เจ้าพนักงานธุรการปฎิบัติงาน </span> <br>
                         <span>วันที่.................................................</span>
                     </div>
                 </div>
@@ -309,15 +309,15 @@
                         <span>ตำแหน่ง...........................................</span> <br>
                         <span>วันที่.................................................</span>
                     </div>
-                    {{-- <div class="col-xs-6">
+                    <div class="col-xs-6">
                         <span> คำสั่ง ( ) อนุญาต ( ) ไม่อนุญาต</span><br>
                         <span>.........................................................</span> <br>
-                        <div class="dis">ลงชื่อ <div class="dissign2">(นางวราภรณ์ วังเมธากุล)</div> </div><br>
-                        <span>ตำแหน่ง รองผู้อำนวยการฝ่ายบริหาร </span> <br>
+                        <div class="dis">ลงชื่อ <div class="dissign2">(นางพลับพลึง จำพรด)</div> </div><br>
+                        <span>ตำแหน่ง รองผู้อำนวยการฝ่ายบริหาร</span><br><div class="posi">ปฏิบัติราชการแทนผู้อำนวยการโรงพยาบาลอ่างทอง</div> <br>
                         <span>วันที่.................................................</span>
-                    </div> --}}
+                    </div>
                 </div>
-                <span>หมายเหตุ : ห้ามลบขีดเขียน</span>
+                <div class="dondelete1">หมายเหตุ : ห้ามลบขีดเขียน</div>
             @endif
         </div>
     </body>
