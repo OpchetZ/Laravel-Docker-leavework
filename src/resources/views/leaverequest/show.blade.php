@@ -54,11 +54,11 @@
                                     </tr>
                                     <tr>
                                         <th> วันเริ่ม </th>
-                                        <td> {{ $leaverequest->start_date->thaidate('วันที่ j เดือน F พ.ศ. y') }} </td>
+                                        <td> {{ $leaverequest->start_date->thaidate('วันที่ j F พ.ศ. y') }} </td>
                                     </tr>
                                     <tr>
                                         <th> วันสิ้นสุด </th>
-                                        <td> {{ $leaverequest->end_date->thaidate('วันที่ j เดือน F พ.ศ. y') }} </td>
+                                        <td> {{ $leaverequest->end_date->thaidate('วันที่ j F พ.ศ. y') }} </td>
                                     </tr>
                                     <tr>
                                         <th> วัน </th>

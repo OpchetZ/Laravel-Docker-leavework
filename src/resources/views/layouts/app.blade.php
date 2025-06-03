@@ -23,6 +23,28 @@
             #tab {
                 margin-left: 5em;
             }
+            .Navmenu{
+                background-color: rgb(0, 50, 77);
+                border-bottom: 1px solid gray;
+            }
+            .navlink{
+                color: white;
+            }
+            .navlink:hover{
+                background-color: rgb(47, 191, 191);
+            }
+            .head{
+                color: black;
+            }
+            .tsize {
+                width: 50%;
+            }
+            .bigTmar {
+                margin-left: 10px;
+            }
+            .thth {
+                width: 50%;
+}
 
 
         </style>
@@ -35,7 +57,10 @@
             <!-- Page Heading -->
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight head">
+                        {{ $header }}
+                    </h2>
+                    
                 </div>
             </header>
 

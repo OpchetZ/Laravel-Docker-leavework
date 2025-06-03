@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+
 use App\Models\agency;
 use App\Models\employ;
 use App\Models\leaverequest;
@@ -12,6 +13,8 @@ class Historyindex2 extends Component
     public $employs,$agen,$leaverequest;
     public $list = [];
     public $agenlist = [];
+    public $YEAR = [];
+    
     public function mount(){
         $this->employs = employ::all();
         $this->agen = agency::all();
@@ -26,6 +29,10 @@ class Historyindex2 extends Component
         $this->list = $this->employs->pluck('id');
         
     }
+    public function year(){
+        $this->YEAR = $this->leaverequest->pluck('start_date');
+        
+    }
     
     public function render()
     {
@@ -35,6 +42,7 @@ class Historyindex2 extends Component
             'employs' => $this->employs,
             'agen' => $this->agen,
             'leaverequest' => $this->leaverequest,
+            'YEAR' => $this->YEAR,
         ]);
     }
 }

@@ -42,6 +42,15 @@ Route::middleware(['auth'])->group(function (){
     Route::get('history',[leaverequestController::class, 'index2']);
     Route::resource('agency',agencyController::class);
     Route::get('leaverequest/{id}/pdf', [leaverequestController::class, 'pdf']);
+    Route::get('history/report', [leaverequestController::class, 'report'])->name('history.report');
+    Route::get('history/perreport/{id}', [leaverequestController::class, 'perreport'])->name('history.perreport');
+    
+
+
+    Route::get('/get-employees/{agencyId}', [leaverequestController::class, 'getEmployees']);
+    Route::get('/get-employee-details/{id}', [leaverequestController::class, 'getEmployeeDetails']);
+    Route::get('/get-leave-details/{id}', [leaverequestController::class, 'getLeaveDetails']);
+
     Route::get('counter',function(){
         return view('counter');
     });

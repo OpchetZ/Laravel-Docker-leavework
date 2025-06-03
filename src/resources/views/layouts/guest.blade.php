@@ -15,6 +15,12 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <style>
+            .welcomelog {
+                font: bold;
+                font-size: 25px;
+            }
+        </style>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">

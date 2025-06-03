@@ -41,7 +41,7 @@ class employ extends Model
     }
     public function LeaveRequests()
     {
-        return $this->hasMany(leaverequest::class, 'employ_id');
+        return $this->hasMany(leaverequest::class, 'employ_id','id');
     }
     public function agency()
     {

@@ -88,6 +88,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="pagination">
+                                {{ $employ->links() }}
+                            </div>
                             <div class="pagination-wrapper"> {!! $employ->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 

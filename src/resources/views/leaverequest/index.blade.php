@@ -1,8 +1,8 @@
 <x-app-layout title="ใบลา">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        
             {{ __('ใบลา') }}
-        </h2>
+       
     </x-slot>
     <div class="container">
         <div class="row">
@@ -44,6 +44,7 @@
                                         <th>วันเริ่ม</th>
                                         <th>วันสิ้นสุด</th>
                                         <th>วัน</th>
+                                        <th>สถาณะ</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -58,9 +59,18 @@
                                             {{-- <td>{{ $loop->iteration }}</td> --}}
                                             <td>{{ $item->employ->name??null }}</td>
                                             <td>{{ $item->leavetype->leave_type_name??null }}</td>
-                                            <td>{{ $item->start_date->thaidate('วันที่ j M พ.ศ. y') }}</td>
+                                            <td id="YEAH">{{ $item->start_date->thaidate('วันที่ j M พ.ศ. y') }}</td>
                                             <td>{{ $item->end_date->thaidate('วันที่ j M พ.ศ. y') }}</td>
                                             <td>{{ $item->total_leave }}</td>
+                                            @if($item->status == 'อนุมัติ')
+                                            <td style="background-color: rgb(36, 228, 55);color:aliceblue;">{{ $item->status }}</td>
+                                            @elseif($item->status == 'ไม่อนุมัติ')
+                                            <td style="background-color: rgb(228, 36, 36);color:aliceblue;">{{ $item->status }}</td>
+                                            @elseif($item->status == 'รอการอนุมัติ')
+                                            <td style="background-color: rgb(211, 237, 13);color:aliceblue;">{{ $item->status }}</td>
+                                            @else
+                                            <td style="background-color: rgb(255, 255, 255)">{{ $item->status }}</td>
+                                            @endif
                                             <td>
                                                 {{-- <a href="{{ url('/leaverequest/' . $leaverequest->id) }}"
                                                     title="View leaverequest"><button class="btn btn-info btn-sm"><i
@@ -71,11 +81,11 @@
                                                         แก้ไข</button></a>
                                                 <a href="{{ url('/leaverequest/' . $item->id . '/pdf') }}"
                                                     title="PDF">
-                                                    <button class="btn btn-success btn-sm">
+                                                    <button class="btn btn-success btn-sm" id="printLeaveBtn">
                                                         <i class="fa fa-file" aria-hidden="true"> พิมพ์ใบลา</i> 
                                                     </button>
                                                 </a>
-
+                                               
 
                                                 <form method="POST"
                                                     action="{{ url('/leaverequest' . '/' . $item->id) }}"
@@ -94,6 +104,9 @@
                                     
                                 </tbody>
                             </table>
+                            <div class="pagination">
+                                {{ $leaverequest->links() }}
+                            </div>
                             {{-- <div class="pagination-wrapper"> {!! $leaverequest->appends(['search' => Request::get('search')])->render() !!} </div> --}}
                         </div>
 
