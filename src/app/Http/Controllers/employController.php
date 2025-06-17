@@ -17,6 +17,11 @@ class employController extends Controller
      *
      * @return \Illuminate\View\View
      */
+    public function __invoke()
+    {
+        $employ = employ::all();
+        return response()->json($employ);
+    }
     public function index(Request $request)
     {
         $keyword = $request->get('search');
@@ -34,8 +39,10 @@ class employController extends Controller
         } else {
             $employ = employ::latest()->paginate($perPage);
         }
-
+        
+        
         return view('employ.index', compact('employ'));
+        
     }
 
     /**
