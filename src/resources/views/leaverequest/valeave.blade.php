@@ -142,7 +142,7 @@ $endOfFiscalYear = Carbon::create($currentYear + 1, 9, 30)->toDateString();
         <span>.........................................................</span> <br>
         <div class="dis">ลงชื่อ <div class="dissign1">(นายยุทธนา เกษมสุข)</div>
         </div><br>
-        <span>ตำแหน่ง เจ้าพนักงานธุรการปฎิบัติงาน </span> <br>
+        <span>ตำแหน่ง เจ้าพนักงานธุรการชำนาญงาน </span> <br>
         <span>วันที่.................................................</span>
     </div>
 </div>
