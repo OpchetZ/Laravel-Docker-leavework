@@ -20,7 +20,7 @@
 </div>
 <div class="form-group {{ $errors->has('leave_type_id') ? 'has-error' : ''}}">
     <label for="leave_type_id" class="control-label">{{ 'ประเภทการลา' }}</label>
-    <select name="leave_type_id" class="form-control" id="leave_type_id" >
+    <select name="leave_type_id" class="form-control" id="leave_type_id" required>
         @foreach($leavetype as $item)
         <option value="{{ $item->id }}">{{ $item->leave_type_name }}</option>
         @endforeach
