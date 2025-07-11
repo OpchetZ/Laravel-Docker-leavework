@@ -21,30 +21,39 @@
     </div>
 </div>
 @php
-    $currentYear = Carbon::parse($leaverequest->start_date->toDateString())->year;
-$startOfFiscalYear = Carbon::create($currentYear, 10, 1)->toDateString();
-$endOfFiscalYear = Carbon::create($currentYear + 1, 9, 30)->toDateString();
-    $selectedIds = [$leaverequest->employ_id];
-    $selectleave = [$leaverequest->leave_type_id];
+   use Carbon\Carbon;
+   use App\Models\LeaveRequest;
+
+    $currentYear = Carbon::parse($leaverequest->start_date)->year;
+    $startOfFiscalYear = Carbon::create($currentYear - 1, 10, 1);
+    $endOfFiscalYear = Carbon::create($currentYear, 9, 30);
+    $startOfFiscalYear2 = Carbon::create($currentYear, 10, 1);
+    $endOfFiscalYear2 = Carbon::create($currentYear + 1, 9, 30);
+    if ($leaverequest->start_date->between($startOfFiscalYear,$endOfFiscalYear)) {
+        $selectedIds = [$leaverequest->employ_id];
+        $selectleave = [$leaverequest->leave_type_id];
     if ($leaverequest->leavetype->leave_type_name == 'ลากิจ') {
-        $leavebus = $leaverequest
-            ->whereIn('employ_id', $selectedIds)
-            ->whereIn('leave_type_id', $selectleave)
-            ->whereBetween('start_date', [$startOfFiscalYear, $endOfFiscalYear])
+        $leavebus = LeaveRequest::query()
+            ->where('employ_id', $selectedIds)
+            ->where('leave_type_id', $selectleave)
+            ->where('start_date', '<', $leaverequest->start_date)
+            ->whereBetween('start_date',[$startOfFiscalYear,$endOfFiscalYear])
             ->sum('total_leave');
         $busleave = $leaverequest->total_leave;
-        $leavebus = $leavebus - $leaverequest->total_leave;
+        // $leavebus = $leavebus - $leaverequest->total_leave;
         $allleave = $leavebus + $leaverequest->total_leave;
     } elseif ($leaverequest->leavetype->leave_type_name == 'ลาป่วย') {
-        $leavesick = $leaverequest
+        $leavesick = LeaveRequest::query()
             ->whereIn('employ_id', $selectedIds)
             ->whereIn('leave_type_id', $selectleave)
-            ->whereBetween('start_date', [$startOfFiscalYear, $endOfFiscalYear])
+            ->where('start_date', '<', $leaverequest->start_date)
+            ->whereBetween('start_date',[$startOfFiscalYear,$endOfFiscalYear])
             ->sum('total_leave');
         $sickleave = $leaverequest->total_leave;
-        $leavesick = $leavesick - $leaverequest->total_leave;
+        // $leavesick = $leavesick - $leaverequest->total_leave;
         $sickallleave = $leavesick + $leaverequest->total_leave;
-    } else {
+    } 
+    else {
         $leavevaca = $leaverequest
             ->whereIn('employ_id', $selectedIds)
             ->whereIn('leave_type_id', $selectleave)
@@ -53,12 +62,70 @@ $endOfFiscalYear = Carbon::create($currentYear + 1, 9, 30)->toDateString();
         $leavevaca = $leavevaca - $leaverequest->total_leave;
         $ealleave = $leavevaca + $leaverequest->total_leave;
     }
-    $lastdate = $leaverequest
-        ->whereIn('employ_id', $selectedIds)
-        ->whereIn('leave_type_id', $selectleave)
-        ->skip(1)
-        ->latest()
-        ->first();
+    // $lastdate = LeaveRequest::query()
+    //     ->whereIn('employ_id', $selectedIds)
+    //     ->whereIn('leave_type_id', $selectleave)
+    //     ->where('id', '!=', $leaverequest->id)
+    //     ->latest('start_date')
+    //     ->first();
+    $lastdate = LeaveRequest::query()
+    ->where('employ_id', $leaverequest->employ_id)
+    ->where('leave_type_id', $leaverequest->leave_type_id)
+    ->where('start_date', '<', $leaverequest->start_date)
+    ->whereBetween('start_date',[$startOfFiscalYear,$endOfFiscalYear])
+    ->orderByDesc('start_date')
+    ->first();
+    }
+    // next YEAR
+    elseif($leaverequest->start_date->between($startOfFiscalYear2,$endOfFiscalYear2)){
+        $selectedIds = [$leaverequest->employ_id];
+        $selectleave = [$leaverequest->leave_type_id];
+    if ($leaverequest->leavetype->leave_type_name == 'ลากิจ') {
+        $leavebus = LeaveRequest::query()
+            ->where('employ_id', $selectedIds)
+            ->where('leave_type_id', $selectleave)
+            ->where('start_date', '<', $leaverequest->start_date)
+            ->whereBetween('start_date',[$startOfFiscalYear2,$endOfFiscalYear2])
+            ->sum('total_leave');
+        $busleave = $leaverequest->total_leave;
+        // $leavebus = $leavebus - $leaverequest->total_leave;
+        $allleave = $leavebus + $leaverequest->total_leave;
+    } elseif ($leaverequest->leavetype->leave_type_name == 'ลาป่วย') {
+        $leavesick = LeaveRequest::query()
+            ->whereIn('employ_id', $selectedIds)
+            ->whereIn('leave_type_id', $selectleave)
+            ->where('start_date', '<', $leaverequest->start_date)
+            ->whereBetween('start_date',[$startOfFiscalYear2,$endOfFiscalYear2])
+            ->sum('total_leave');
+        $sickleave = $leaverequest->total_leave;
+        // $leavesick = $leavesick - $leaverequest->total_leave;
+        $sickallleave = $leavesick + $leaverequest->total_leave;
+    } 
+    else {
+        $leavevaca = $leaverequest
+            ->whereIn('employ_id', $selectedIds)
+            ->whereIn('leave_type_id', $selectleave)
+            ->sum('total_leave');
+        $elsleave = $leaverequest->total_leave;
+        $leavevaca = $leavevaca - $leaverequest->total_leave;
+        $ealleave = $leavevaca + $leaverequest->total_leave;
+    }
+    // $lastdate = LeaveRequest::query()
+    //     ->whereIn('employ_id', $selectedIds)
+    //     ->whereIn('leave_type_id', $selectleave)
+    //     ->where('id', '!=', $leaverequest->id)
+    //     ->latest('start_date')
+    //     ->first();
+    $lastdate = LeaveRequest::query()
+    ->where('employ_id', $leaverequest->employ_id)
+    ->where('leave_type_id', $leaverequest->leave_type_id)
+    ->where('start_date', '<', $leaverequest->start_date)
+    ->whereBetween('start_date',[$startOfFiscalYear2,$endOfFiscalYear2])
+    ->orderByDesc('start_date')
+    ->first();
+    }
+
+    
 @endphp
 <div class="container">
     <div class="">
@@ -110,22 +177,43 @@ $endOfFiscalYear = Carbon::create($currentYear + 1, 9, 30)->toDateString();
             {{-- <div class="col-xs-4 text-center"><span>
                     (นายยุทธนา เกษมสุข)<br>เจ้าพนักงานธุรการปฎิบัติงาน</span></div> --}}
         </div>
+        {{-- ลากิจ --}}
+        @if($leaverequest->leavetype->leave_type_name == 'ลากิจ')
         <div class="row text-center">
             <div class="col-xs-4 b">ป่วย</div>
-            <div class="col-xs-4 b">{{ $leavesick ?? null }}<br></div>
-            <div class="col-xs-4 b">{{ $sickleave ?? null }}<br></div>
-            <div class="col-xs-4 b">{{ $sickallleave ?? null }}<br></div>
+            <div class="col-xs-4 b"><br></div>
+            <div class="col-xs-4 b"><br></div>
+            <div class="col-xs-4 b"><br></div>
 
 
         </div>
         <div class="row text-center">
             <div class="col-xs-4 b">กิจส่วนตัว</div>
             <div class="col-xs-4 b">{{ $leavebus ?? null }}<br></div>
-            <div class="col-xs-4 b">{{ $busleave ?? null }}<br></div>
+            <div class="col-xs-4 b">{{ $leaverequest->total_leave }}<br></div>
             <div class="col-xs-4 b">{{ $allleave ?? null }}<br></div>
 
 
         </div>
+        {{-- ลาป่วย --}}
+        @elseif($leaverequest->leavetype->leave_type_name == 'ลาป่วย')
+        <div class="row text-center">
+            <div class="col-xs-4 b">ป่วย</div>
+            <div class="col-xs-4 b">{{ $leavesick ?? null }}<br></div>
+            <div class="col-xs-4 b">{{ $leaverequest->total_leave }}<br></div>
+            <div class="col-xs-4 b">{{ $sickallleave ?? null }}<br></div>
+
+
+        </div>
+        <div class="row text-center">
+            <div class="col-xs-4 b">กิจส่วนตัว</div>
+            <div class="col-xs-4 b"><br></div>
+            <div class="col-xs-4 b"><br></div>
+            <div class="col-xs-4 b"><br></div>
+
+
+        </div>
+        @endif
     </div>
 
 
