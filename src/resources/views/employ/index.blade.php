@@ -16,6 +16,10 @@
                                     title="Add New employ">
                                     <i class="fa fa-plus" aria-hidden="true"></i> เพิ่ม
                                 </a>
+                                <a href="{{ url('/leavebalance') }}" class="btn btn-info btn-sm"
+                                    title="manage leave carry">
+                                    <i aria-hidden="true"></i> จัดการลาพักผ่อนสะสม
+                                </a>
                             </div>
                             <div class="col-lg-3">
                                 <form method="GET" action="{{ url('/employ') }}" accept-charset="UTF-8"

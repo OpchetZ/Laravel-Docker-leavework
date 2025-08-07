@@ -1,0 +1,28 @@
+{
+    "fields": [
+        {
+            "name": "employ_id",
+            "type": "integer"
+        },
+        {
+            "name":"year",
+            "type":"integer"
+        },
+        {
+            "name":"vacation_leave",
+            "type":"integer"
+        },
+        {
+            "name":"vacation_carried",
+            "type":"integer"
+        },
+        {
+            "name":"max_carry",
+            "type":"integer"
+        },
+        {
+            "name":"is_eligible",
+            "type":"boolean"
+        }
+    ]
+}

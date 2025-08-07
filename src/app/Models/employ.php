@@ -47,5 +47,10 @@ class employ extends Model
     {
         return $this->belongsTo(agency::class,'agent_id');
     }
+    public function leavebalance()
+    {
+        return $this->hasMany(leavebalance::class, 'employ_id');
+    }
+    
 
 }
