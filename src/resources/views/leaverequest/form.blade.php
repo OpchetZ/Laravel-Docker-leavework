@@ -52,7 +52,7 @@
     </div>
     {!! $errors->first('total_leave', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
+{{-- <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
     <label for="status" class="control-label">{{ 'สถาณะ' }}</label>
     <select name="status" class="form-control" id="status" required>
         <option value="รอการอนุมัติ">รอการอนุมัติ</option>
@@ -63,7 +63,7 @@
 <script>
     document.querySelector("#status").value = "{{ isset($leaverequest->status) ? $leaverequest->status : ''}}";
 </script>
-</div>
+</div> --}}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const startDateInput = document.getElementById('start_date');

@@ -44,7 +44,7 @@
                                         <th>วันเริ่ม</th>
                                         <th>วันสิ้นสุด</th>
                                         <th>วัน</th>
-                                        <th>สถาณะ</th>
+                                        {{-- <th>สถาณะ</th> --}}
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -62,7 +62,7 @@
                                             <td id="YEAH">{{ $item->start_date->thaidate('วันที่ j M พ.ศ. y') }}</td>
                                             <td>{{ $item->end_date->thaidate('วันที่ j M พ.ศ. y') }}</td>
                                             <td>{{ $item->total_leave }}</td>
-                                            @if($item->status == 'อนุมัติ')
+                                            {{-- @if($item->status == 'อนุมัติ')
                                             <td style="background-color: rgb(36, 228, 55);color:aliceblue;">{{ $item->status }}</td>
                                             @elseif($item->status == 'ไม่อนุมัติ')
                                             <td style="background-color: rgb(228, 36, 36);color:aliceblue;">{{ $item->status }}</td>
@@ -70,7 +70,7 @@
                                             <td style="background-color: rgb(211, 237, 13);color:aliceblue;">{{ $item->status }}</td>
                                             @else
                                             <td style="background-color: rgb(255, 255, 255)">{{ $item->status }}</td>
-                                            @endif
+                                            @endif --}}
                                             <td>
                                                 {{-- <a href="{{ url('/leaverequest/' . $leaverequest->id) }}"
                                                     title="View leaverequest"><button class="btn btn-info btn-sm"><i

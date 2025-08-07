@@ -31,6 +31,7 @@
                         <td class="col-lg-6 bor">ที่</td>
                         <td class="col-lg-6 bor">ชื่อ</td>
                         <td class="col-lg-6 bor">ตำแหน่ง</td>
+                        <td class="col-lg-4 bor">สะสม</td>
                         <td class="col-lg-6 bor">ลาพักผ่อน</td>
                         <td class="col-lg-6 bor">ลากิจ</td>
                         <td class="col-lg-6 bor">ลาป่วย</td>
@@ -43,6 +44,7 @@
                         <td class="col-lg-6 bor">#</td>
                         <td class="col-lg-6 bor">ประเภทการจ้าง:ลูกจ้างประจำ</td>
                         <td class="col-lg-6 bor">สิทธิการลา(วัน)</td>
+                        <td class="col-lg-4 bor"></td>
                         <td class="col-lg-6 bor text-center">10</td>
                         <td class="col-lg-6 bor text-center">45</td>
                         <td class="col-lg-6 bor text-center">60</td>
@@ -53,11 +55,11 @@
                             <td class="bor text-center">{{ $loop->iteration }}</td>
                             <td class="bor">{{ $item->name }}</td>
                             <td class="bor">{{ $item->position->Job_position }}</td>
+                            <td class="text-center bor">{{$balance[$item->id]->vacation_carried}}</td>
                             <td class="text-center bor">
                                
                                 @php
                                 $vaca = $item->leaverequests
-                                    ->where('status', 'อนุมัติ')
                                     ->where('leave_type_id', 1)
                                     ->whereBetween('start_date', [$start, $end])
                                     ->sum('total_leave');
@@ -70,7 +72,6 @@
                             <td class="text-center bor">
                                 @php
                                     $bus = $item->leaverequests
-                                        ->where('status', 'อนุมัติ')
                                         ->where('leave_type_id', 2)
                                         ->whereBetween('start_date', [$start, $end])
                                         ->sum('total_leave');
@@ -84,7 +85,6 @@
                                 @php
 
                                 $sickleave = $item->leaverequests
-                                    ->where('status', 'อนุมัติ')
                                     ->where('leave_type_id', 4)
                                     ->whereBetween('start_date', [$start, $end])
                                     ->sum('total_leave');
@@ -101,6 +101,7 @@
                         <td class="col-lg-6 bor">#</td>
                         <td class="col-lg-6 bor">ประเภทการจ้าง:พนักงานกระทรวงฯ</td>
                         <td class="col-lg-6 bor">สิทธิการลา(วัน)</td>
+                        <td class="col-lg-4 bor"></td>
                         <td class="col-lg-6 bor text-center">10</td>
                         <td class="col-lg-6 bor text-center">15</td>
                         <td class="col-lg-6 bor text-center">45</td>
@@ -111,11 +112,11 @@
                             <td class="bor text-center">{{ $loop->iteration }}</td>
                             <td class="bor">{{ $item->name }}</td>
                             <td class="bor">{{ $item->position->Job_position }}</td>
+                            <td class="text-center bor">{{$balance[$item->id]->vacation_carried}}</td>
                             <td class="text-center bor">
                                 @php
 
                                     $vaca = $item->leaverequests
-                                        ->where('status', 'อนุมัติ')
                                         ->where('leave_type_id', 1)
                                         ->whereBetween('start_date', [$start, $end])
                                         ->sum('total_leave');
@@ -128,7 +129,6 @@
                             <td class="text-center bor">
                                 @php
                                     $bus = $item->leaverequests
-                                        ->where('status', 'อนุมัติ')
                                         ->where('leave_type_id', 2)
                                         ->whereBetween('start_date', [$start, $end])
                                         ->sum('total_leave');
@@ -140,7 +140,6 @@
                             <td class="text-center bor">
                                 @php
                                     $sickleave = $item->leaverequests
-                                        ->where('status', 'อนุมัติ')
                                         ->where('leave_type_id', 4)
                                         ->whereBetween('start_date', [$start, $end])
                                         ->sum('total_leave');
@@ -156,6 +155,7 @@
                         <td class="col-lg-6 bor">#</td>
                         <td class="col-lg-6 bor">ประเภทการจ้าง:ลูกจ้าวชั่วคราว (รายวัน)</td>
                         <td class="col-lg-6 bor">สิทธิการลา(วัน)</td>
+                        <td class="col-lg-4 bor"></td>
                         <td class="col-lg-6 bor text-center">10</td>
                         <td class="col-lg-6 bor text-center">0</td>
                         <td class="col-lg-6 bor text-center">15</td>
@@ -166,11 +166,11 @@
                             <td class="bor text-center">{{ $loop->iteration }}</td>
                             <td class="bor">{{ $item->name }}</td>
                             <td class="bor">{{ $item->position->Job_position }}</td>
+                            <td class="text-center bor">{{$balance[$item->id]->vacation_carried}}</td>
                             <td class="text-center bor">
                                 @php
 
                                     $vaca = $item->leaverequests
-                                        ->where('status', 'อนุมัติ')
                                         ->where('leave_type_id', 1)
                                         ->whereBetween('start_date', [$start, $end])
                                         ->sum('total_leave');
@@ -183,7 +183,6 @@
                             <td class="text-center bor">
                                 @php
                                     $bus = $item->leaverequests
-                                        ->where('status', 'อนุมัติ')
                                         ->where('leave_type_id', 2)
                                         ->whereBetween('start_date', [$start, $end])
                                         ->sum('total_leave');
@@ -195,7 +194,6 @@
                             <td class="text-center bor">
                                 @php
                                     $sickleave = $item->leaverequests
-                                        ->where('status', 'อนุมัติ')
                                         ->where('leave_type_id', 4)
                                         ->whereBetween('start_date', [$start, $end])
                                         ->sum('total_leave');

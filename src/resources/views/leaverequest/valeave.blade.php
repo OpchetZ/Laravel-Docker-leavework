@@ -20,67 +20,90 @@
         </div>
     </div>
 </div>
-{{-- @php
-    $selectedIds = [$leaverequest->employ_id];
-    $selectleave = [$leaverequest->leave_type_id];
-    $leavevaca = $leaverequest
-        ->whereIn('employ_id', $selectedIds)
-        ->whereIn('leave_type_id', $selectleave)
-        ->sum('total_leave');
-    $leavevaca = $leavevaca - $leaverequest->total_leave;
-    $allleave = $leavevaca + $leaverequest->total_leave;
-    $accleave = $leaverequest->employ->vaca_max - $leavevaca;
-    $accday = $leaverequest->employ->Acc_vaca_day;
-    $vacatotal = $accday + $accleave;
-    if ($accday != 0) {
-        if ($allleave > $leaverequest->employ->vaca_max) {
-            $odd = $allleave - $leaverequest->employ->vaca_max;
-            $odd = $odd - $leaverequest->total_leave;
-            $accday = $leaverequest->employ->Acc_vaca_day - $odd;
 
-            $accleave = 0;
-            $vacatotal = $accday + $accleave;
-        }
-    } elseif ($accleave > 0) {
-        $accday = 0;
-        $accleave = $leaverequest->employ->vaca_max - $leavevaca;
-        $vacatotal = $accday + $accleave;
-    }
-@endphp --}}
 @php
    use Carbon\Carbon;
+    use App\Models\LeaveRequest;
+
 
 $currentYear = Carbon::parse($leaverequest->start_date->toDateString())->year;
-$startOfFiscalYear = Carbon::create($currentYear, 10, 1)->toDateString();
-$endOfFiscalYear = Carbon::create($currentYear + 1, 9, 30)->toDateString();
-    $selectedIds = [$leaverequest->employ_id];
+$DateofBalance = Carbon::parse($leaverequest->start_date->toDateString());
+if ($DateofBalance->month >= 10) {
+    $fiscalYEAR = $DateofBalance->year + 1;
+}else {
+    $fiscalYEAR = $DateofBalance->year;
+}
+$startOfFiscalYear = Carbon::create($currentYear - 1, 10, 1);
+    $endOfFiscalYear = Carbon::create($currentYear, 9, 30);
+    $startOfFiscalYear2 = Carbon::create($currentYear, 10, 1);
+    $endOfFiscalYear2 = Carbon::create($currentYear + 1, 9, 30);
+if ($leaverequest->start_date->between($startOfFiscalYear,$endOfFiscalYear)) {
+     $selectedIds = [$leaverequest->employ_id];
     $selectleave = [$leaverequest->leave_type_id];
+    $balance = $leavebalance
+        ->whereIn('employ_id', $selectedIds)
+        ->whereIn('year', $fiscalYEAR);
     $leavevaca = $leaverequest
         ->whereIn('employ_id', $selectedIds)
         ->whereIn('leave_type_id', $selectleave)
         ->where('id', '<=', $leaverequest->id)
         ->whereBetween('start_date', [$startOfFiscalYear, $endOfFiscalYear])
         ->sum('total_leave');
-    $leavevaca = max(0, $leavevaca - $leaverequest->total_leave); 
-    $allleave = max(0, $leavevaca + $leaverequest->total_leave); 
-    $accleave = max(0, $leaverequest->employ->vaca_max - $leavevaca);
-    $accday = max(0, $leaverequest->employ->Acc_vaca_day); 
-    $vacatotal = $accday + $accleave;
+    $leavevaca = ($leavevaca - $leaverequest->total_leave); 
+    $allleave = ($leavevaca + $leaverequest->total_leave); 
+    // $accleave = ($balance->firstWhere('year', $currentYear)->vacation_leave - $leavevaca);
+    // $accday = ($balance->firstWhere('year', $currentYear)->vacation_carried); 
+    
 
-    if ($accday != 0) {
-        if ($allleave > $leaverequest->employ->vaca_max) {
-            $odd = max(0, $allleave - $leaverequest->employ->vaca_max); 
-            $odd = max(0, $odd - $leaverequest->total_leave); 
-            $accday = max(0, $leaverequest->employ->Acc_vaca_day - $odd); 
-
-            $accleave = 0;
-            $vacatotal = $accday + $accleave;
+    if ($balance->firstWhere('year',$fiscalYEAR)->is_eligible == 1) {
+       $accday = ($balance->firstWhere('year', $fiscalYEAR)->vacation_carried - $leavevaca);
+        $accleave = ($balance->firstWhere('year', $fiscalYEAR)->vacation_leave);
+        
+         if ($accday < 0) {
+            $accleave += $accday;
+            $accday = 0;
         }
-    } elseif ($accleave > 0) {
-        $accday = 0;
-        $accleave = max(0, $leaverequest->employ->vaca_max - $leavevaca); 
         $vacatotal = $accday + $accleave;
+    } elseif ($balance->firstWhere('year',$fiscalYEAR)->is_eligible == 0) {
+    $accleave = ($balance->firstWhere('year', $fiscalYEAR)->vacation_leave - $leavevaca);
+    $accday = ($balance->firstWhere('year', $fiscalYEAR)->vacation_carried);
+    $vacatotal = $accday + $accleave;
     }
+}elseif ($leaverequest->start_date->between($startOfFiscalYear2,$endOfFiscalYear2)) {
+    $selectedIds = [$leaverequest->employ_id];
+    $selectleave = [$leaverequest->leave_type_id];
+     $balance = $leavebalance
+        ->whereIn('employ_id', $selectedIds)
+        ->whereIn('year', $fiscalYEAR);
+    $leavevaca = $leaverequest
+        ->whereIn('employ_id', $selectedIds)
+        ->whereIn('leave_type_id', $selectleave)
+        ->where('id', '<=', $leaverequest->id)
+        ->whereBetween('start_date', [$startOfFiscalYear2, $endOfFiscalYear2])
+        ->sum('total_leave');
+    $leavevaca = ($leavevaca - $leaverequest->total_leave); 
+    $allleave = ($leavevaca + $leaverequest->total_leave); 
+    
+     
+    
+
+    if ($balance->firstWhere('year',$fiscalYEAR)->is_eligible == 1) {
+       $accday = ($balance->firstWhere('year', $fiscalYEAR)->vacation_carried - $leavevaca);
+        $accleave = ($balance->firstWhere('year', $fiscalYEAR)->vacation_leave);
+        
+        if ($accday < 0) {
+            $accleave += $accday;
+            $accday = 0;
+        }
+        $vacatotal = $accday + $accleave;
+    } elseif ($balance->firstWhere('year',$fiscalYEAR)->is_eligible == 0) {
+    $accleave = ($balance->firstWhere('year', $fiscalYEAR)->vacation_leave - $leavevaca);
+    $accday = ($balance->firstWhere('year', $fiscalYEAR)->vacation_carried);
+    $vacatotal = $accday + $accleave;
+    }
+}
+
+   
 @endphp
 
 <div class="container">
@@ -94,7 +117,7 @@ $endOfFiscalYear = Carbon::create($currentYear + 1, 9, 30)->toDateString();
     </div>
     <span>สังกัด...........โรงพยาบาลอ่างทอง...........................กลุ่มงาน.............{{ $leaverequest->employ->agency->agency_name }}.....</span>
     <span>มีวันลาพักผ่อนสะสม {{ $accday }} วันทำการมีสิทธิลาพักผ่อนประจำปีนี้อีก
-        {{ $accleave }} วันทำการ รวมเป็น {{ $vacatotal }} วัน<br></span>
+        {{ $accleave }} วันทำการรวมเป็น{{ $vacatotal }} วัน<br></span>
     <span>ขอลาพักผ่อนตั้งแต่วันที่..............................................ถึงวันที่..............................................
     </span>
     <div class="vacadatestart">{{ $leaverequest->start_date->thaidate('j เดือน M พ.ศ.y') }}</div>
