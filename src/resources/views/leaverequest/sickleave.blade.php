@@ -231,6 +231,7 @@
         <span>วันที่.................................................</span>
     </div>
 </div>
+<div class="approvesick">เห็นควรอนุญาต</div>
 <div class="row">
     <div class="col-xs-6">
 

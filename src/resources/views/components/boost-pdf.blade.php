@@ -190,6 +190,16 @@
             left: 300px;
             top: 230px;
         }
+        .approvesick{
+            position: absolute;
+            bottom: 365px;
+            right: 140px;
+        }
+        .approveva{
+            position: absolute;
+            bottom: 380px;
+            right: 140px;
+        }
     </style>
 </head>
 

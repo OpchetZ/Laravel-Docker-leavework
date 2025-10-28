@@ -169,6 +169,7 @@ if ($leaverequest->start_date->between($startOfFiscalYear,$endOfFiscalYear)) {
         <span>วันที่.................................................</span>
     </div>
 </div>
+<div class="approveva">เห็นควรอนุญาต</div>
 <div class="row">
     <div class="col-xs-6">
 
